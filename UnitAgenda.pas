@@ -93,10 +93,10 @@ var
   cancelat: boolean;
 begin
   NetejaZona;
-  writeln('─── NOU CONTACTE ───');
+  gotoxy(3, 4); writeln('─── NOU CONTACTE ───');
   gotoxy(3, 8); write('Nom:');
   gotoxy(8, 8);
-  gotoxy(3, 22); textcolor(Yellow); write('(ESC per sortir)');
+  gotoxy(3, 25); textcolor(Yellow); write('(ESC per sortir)');
   textcolor(White);
   gotoxy(8, 8);
   nom := LlegirLiniaCancelar(cancelat);
@@ -115,7 +115,7 @@ begin
 
   gotoxy(3, 9); write('Telefon:');
   gotoxy(12, 9);
-  gotoxy(3, 22); textcolor(Yellow); write('(ESC per sortir)');
+  gotoxy(3, 25); textcolor(Yellow); write('(ESC per sortir)');
   textcolor(White);
   gotoxy(12, 9);
   telefon := LlegirLiniaCancelar(cancelat);
@@ -134,7 +134,7 @@ begin
 
   gotoxy(3, 10); write('Correu Electrònic: ');
   gotoxy(22, 10);
-  gotoxy(3, 14); textcolor(Yellow); write('(ESC per sortir)');
+  gotoxy(3, 25); textcolor(Yellow); write('(ESC per sortir)');
   textcolor(White);
   gotoxy(22, 10);
   correu := LlegirLiniaCancelar(cancelat);
@@ -166,7 +166,10 @@ end;
 
 procedure LlistarContactes;
 const max_contacts = 1000;
-      page_size = 12;
+  first_contact_row = 7;
+  last_contact_row = 23;
+  options_row = 25;
+  page_size = last_contact_row - first_contact_row + 1;
 var
   contacts: array[1..max_contacts] of string;
   fitxer: text;
@@ -200,18 +203,19 @@ begin
   pagina_actual := 1;
   repeat
     NetejaZona;
+    gotoxy(3, 4);
     writeln('─── LLISTA DE CONTACTES (pàgina ', pagina_actual, ' de ', pagines_totals, ') ───');
     linia_inici := (pagina_actual - 1) * page_size + 1;
     linia_fi := linia_inici + page_size - 1;
     if linia_fi > comptador then linia_fi := comptador;
     for i := linia_inici to linia_fi do
     begin
-      gotoxy(3, 7 + (i - linia_inici + 1));
+      gotoxy(3, first_contact_row + (i - linia_inici));
       writeln(i, '. ', contacts[i]);
     end;
     // Opcions
     textcolor(Yellow);
-    gotoxy(3, 22); write(' ' :77); gotoxy(3, 22);
+    gotoxy(3, options_row); write(' ' :77); gotoxy(3, options_row);
     if pagina_actual > 1 then write('P(ujar) | ');
     if pagina_actual < pagines_totals then write('B(baixar) | ');
     write('ESC per sortir');
@@ -232,6 +236,7 @@ var
   input_str, linia, esborrat: string;
 begin
   NetejaZona;
+  gotoxy(3, 4); writeln('─── ESBORRAR CONTACTE ───');
   comptador := 0;
   assign(fitxer, 'contactes.txt');
   {$I-} reset(fitxer); {$I+}
@@ -258,7 +263,7 @@ begin
   // Demanar número
   gotoxy(3, 8); write('Número de contacte a eliminar:');
   gotoxy(35, 8);
-  gotoxy(3, 22); textcolor(Yellow); write('(ESC per sortir)');
+  gotoxy(3, 25); textcolor(Yellow); write('(ESC per sortir)');
   textcolor(White);
   gotoxy(35, 8);
   input_str := LlegirLiniaCancelar(cancelat);
@@ -312,10 +317,10 @@ var
   cancelat: boolean;
 begin
   NetejaZona;
-  gotoxy(3, 7); writeln('─── EXPORTAR CONTACTES ───');
+  gotoxy(3, 4); writeln('─── EXPORTAR CONTACTES ───');
   gotoxy(3, 9); write('Nom del fitxer de destí: ');
   gotoxy(29, 9);
-  gotoxy(3, 22); textcolor(Yellow); write('(ESC per sortir)');
+  gotoxy(3, 25); textcolor(Yellow); write('(ESC per sortir)');
   textcolor(White);
   gotoxy(29, 9);
   nom_desti := trim(LlegirLiniaCancelar(cancelat));
@@ -383,10 +388,10 @@ var
   cancelat: boolean;
 begin
   NetejaZona;
-  gotoxy(3, 7); writeln('─── IMPORTAR CONTACTES ───');
+  gotoxy(3, 4); writeln('─── IMPORTAR CONTACTES ───');
   gotoxy(3, 9); write('Nom del fitxer origen: ');
   gotoxy(26, 9);
-  gotoxy(3, 22); textcolor(Yellow); write('(ESC per sortir)');
+  gotoxy(3, 25); textcolor(Yellow); write('(ESC per sortir)');
   textcolor(White);
   gotoxy(26, 9);
   nom_origen := trim(LlegirLiniaCancelar(cancelat));
