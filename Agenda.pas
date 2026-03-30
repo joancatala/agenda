@@ -21,7 +21,7 @@ begin
   { Barra superior }
   textbackground(Blue); textcolor(White);
   gotoxy(1,1); clreol;
-  writeln('  SISTEMA DE GESTIO DE CONTACTES v1.0 - joan@riseup.net 2026');
+  writeln('  SISTEMA DE GESTIO DE CONTACTES v1.2 - joan@riseup.net 2026');
 
   { Barra inferior }
   textbackground(Cyan); textcolor(Black);

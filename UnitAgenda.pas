@@ -46,6 +46,12 @@ begin
   textcolor(White);
 end;
 
+procedure BuidaBufferTeclat;
+begin
+  while KeyPressed do
+    ReadKey;
+end;
+
 function LlegirLiniaCancelar(var cancelat: boolean): string;
 var
   c: char;
@@ -377,6 +383,7 @@ begin
   textcolor(LightGreen);
   gotoxy(3, 12); writeln('>> Contactes exportats a ', nom_desti);
   gotoxy(3, 13); writeln('Prem qualsevol tecla per continuar...');
+  BuidaBufferTeclat;
   readkey;
 end;
 
