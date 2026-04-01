@@ -4,8 +4,12 @@ Bàsicament és un fitxer Agenda.pas amb la pantalla principal estructurada, i u
 
 <img src="https://github.com/joancatala/agenda/blob/main/captura_agenda1.png" alt="Captura de pantalla 1" />
 
-Per a fer-ho funcionar, cal compilar el fitxer Agenda.pas però no cal compilar el UnitAgenda.pas. Compilarem així l'agenda:
-Copy
-$ fpc ./Agenda.pas 
+Per a fer-ho funcionar, cal compilar el fitxer Agenda.pas però no cal compilar el UnitAgenda.pas. 
+
+Compilarem així l'agenda:
+<strong>$ fpc ./Agenda.pas</strong>
+
+I ara executem amb:
+<strong>$ ./Agenda</strong>
 
 <img src="https://github.com/joancatala/agenda/blob/main/captura_agenda2.png" alt="Captura de pantalla 2" />
